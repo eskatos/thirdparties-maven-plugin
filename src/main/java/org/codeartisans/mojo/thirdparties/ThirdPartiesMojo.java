@@ -132,7 +132,7 @@ public class ThirdPartiesMojo
                     } else {
                         String localMd5 = new Md5Hash( new FileInputStream( file ) ).toHex();
                         if ( !thirdParty.getMd5().equals( localMd5 ) ) {
-                            throw new MojoExecutionException( "Third party [ " + file.getAbsolutePath() + " ] already exists but md5 do not match" );
+                            throw new MojoExecutionException( "Third party " + file.getName() + " already exists but md5 do not match" );
                         }
                         getLog().info( "  Will use already present " + file.getName() + " [ " + localMd5 + " ]" );
                         downloaded.put( id, file );
@@ -154,12 +154,21 @@ public class ThirdPartiesMojo
             }
             for ( Map.Entry<ThirdPartyId, ThirdParty> eachEntry : fullThirdParties.entrySet() ) {
                 ThirdPartyId id = eachEntry.getKey();
+                ThirdParty thirdParty = eachEntry.getValue();
                 if ( downloaded.get( id ) == null ) {
                     URL url = new URL( eachEntry.getValue().getSrc() );
                     File file = new File( outputDirectory, id.getClassifier() + "." + id.getType() );
                     IOUtil.copy( url.openStream(), new FileOutputStream( file ) );
+                    if ( thirdParty.getMd5() == null ) {
+                        getLog().info( "  Downloaded " + file.getName() );
+                    } else {
+                        String localMd5 = new Md5Hash( new FileInputStream( file ) ).toHex();
+                        if ( !thirdParty.getMd5().equals( localMd5 ) ) {
+                            throw new MojoExecutionException( "Third party " + file.getName() + " downloaded but md5 do not match" );
+                        }
+                        getLog().info( "  Downloaded " + file.getName() + " [ " + localMd5 + " ]" );
+                    }
                     downloaded.put( id, file );
-                    getLog().info( "  Downloaded " + file.getName() );
                 }
             }
             return downloaded;
