@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.codeartisans</groupId>
+    <artifactId>codeartisans-parent</artifactId>
+    <version>6</version>
+  </parent>
+
+  <groupId>org.codeartisans</groupId>
+  <artifactId>thirdparties-maven-plugin</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <packaging>maven-plugin</packaging>
+  <name>${project.artifactId}</name>
+
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+      <comments>Copyrights retained by each developer.</comments>
+    </license>
+  </licenses>
+
+  <scm>
+    <url>scm:git:git@github.com:eskatos/thirdparties-maven-plugin.git</url>
+    <connection>scm:git:git@github.com:eskatos/thirdparties-maven-plugin.git</connection>
+    <developerConnection>scm:git:git@github.com:eskatos/thirdparties-maven-plugin.git</developerConnection>
+  </scm>
+
+  <developers>
+    <developer>
+      <id>paul@nosphere.org</id>
+      <name>Paul Merlin</name>
+      <email>paul@nosphere.org</email>
+    </developer>
+  </developers>
+
+    
+  <dependencies>
+
+    <dependency>
+      <groupId>org.apache.shiro</groupId>
+      <artifactId>shiro-core</artifactId>
+      <version>1.1.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-project</artifactId>
+      <version>2.2.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-plugin-api</artifactId>
+      <version>2.2.1</version>
+    </dependency>
+  </dependencies>
+
+</project>
