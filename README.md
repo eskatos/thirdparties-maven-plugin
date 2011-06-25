@@ -5,9 +5,9 @@ thirdparties-maven-plugin easily download external resources and attach them as 
 The project is hosted in maven central.
 [here](http://search.maven.org/#search%7Cga%7C1%7Cthirdparties-maven-plugin) you'll find a quick copy/paste for the dependency.
 
-## Usage
+## Attach third party files as classified artifacts
 
-This plugin has only one goal : attached.
+Use the following goal: attached
 
 ### Configuration using a property file
 
@@ -42,4 +42,18 @@ Here is a quick example:
 		</thirdParty>
 	  </thirdParties>
 	</configuration>
+
+## Replace project main artifact with a third party file
+
+Use the following goal: artifact
+
+### Configuration inside the POM
+
+Here is a quick example:
+
+	<configuration>
+          <src>http://example.com/Foo-1.2.3-r5635.jar</src>
+          <md5>60851505f87a3569db7e143f573c2904</md5>
+	</configuration>
+
 
