@@ -18,12 +18,15 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
+
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.project.MavenProject;
 import org.apache.maven.project.MavenProjectHelper;
+
 import org.apache.shiro.crypto.hash.Md5Hash;
+
 import org.codehaus.plexus.util.IOUtil;
 
 public abstract class AbstractThirdPartiesMojo

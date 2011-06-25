@@ -34,17 +34,54 @@ public class ArtifactThirdPartiesMojo
      * @parameter
      */
     private String md5;
+    /**
+     * @parameter
+     */
+    private String sources;
+    /**
+     * @parameter
+     */
+    private String sourcesMd5;
+    /**
+     * @parameter
+     */
+    private String javadoc;
+    /**
+     * @parameter
+     */
+    private String javadocMd5;
 
     @Override
     public void doExecute()
             throws MojoExecutionException, MojoFailureException
     {
-        File file = new File( outputDirectory, project.getArtifactId() + '-' + project.getVersion() + "-thirdparty." + project.getPackaging() );
-        if ( !alreadyDownloaded( file, md5 ) ) {
-            downloadFile( src, md5, file );
+        File mainFile = handle( "main-artifact", src, md5 );
+        project.getArtifact().setFile( mainFile );
+        getLog().info( "Changed project main artifact to " + mainFile.getAbsolutePath() );
+
+        if ( sources != null ) {
+            File sourcesFile = handle( "sources", sources, sourcesMd5 );
+            projectHelper.attachArtifact( project, sourcesFile, "sources" );
+            getLog().info( "Attached sources: " + sourcesFile.getAbsolutePath() );
         }
-        project.getArtifact().setFile( file );
-        getLog().info( "Changed project main artifact to " + file.getAbsolutePath() );
+
+        if ( javadoc != null ) {
+            File javadocFile = handle( "javadoc", javadoc, javadocMd5 );
+            projectHelper.attachArtifact( project, javadocFile, "javadoc" );
+            getLog().info( "Attached javadoc: " + javadocFile.getAbsolutePath() );
+        }
+    }
+
+    private File handle( String ilk, String url, String md5 )
+            throws MojoExecutionException
+    {
+        File file = new File(
+                outputDirectory,
+                ilk + '-' + project.getArtifactId() + '-' + project.getVersion() + '.' + project.getPackaging() );
+        if ( !alreadyDownloaded( file, md5 ) ) {
+            downloadFile( url, md5, file );
+        }
+        return file;
     }
 
 }
