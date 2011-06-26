@@ -54,6 +54,10 @@ Here is a quick example:
 	<configuration>
           <src>http://example.com/Foo-1.2.3-r5635.jar</src>
           <md5>60851505f87a3569db7e143f573c2904</md5>
+          <sources>http://example.com/Foo-1.2.3-r5635-sources.jar</sources>
+          <sourcesMd5>b59ed2eeea343c22ddf38d606ecfff2d</sourcesMd5>
+          <javadoc>http://example.com/Foo-1.2.3-r5635-javadoc.jar</javadoc>
+          <javadocMd5>f24bc8e443d8ee4f911020f83b34b444</javadocMd5>
 	</configuration>
 
 
